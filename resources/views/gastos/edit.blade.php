@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Agregar Nuevo Gasto
+            Editar Gasto
         </h2>
     </x-slot>
 
@@ -19,39 +19,44 @@
                     </div>
                 @endif
 
-                <form action="{{ route('gastos.store') }}" method="POST">
+                <form action="{{ route('gastos.update', $gasto->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
+
                     <div class="mb-4">
                         <label for="titulo" class="block font-semibold text-gray-700">Título</label>
-                        <input type="text" id="titulo" name="titulo" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                               value="{{ old('titulo') }}" required>
+                        <input type="text" id="titulo" name="titulo" class="w-full p-2 border rounded-lg"
+                               value="{{ old('titulo', $gasto->titulo) }}" required>
                     </div>
 
                     <div class="mb-4">
                         <label for="descripcion" class="block font-semibold text-gray-700">Descripción</label>
-                        <textarea id="descripcion" name="descripcion" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300">{{ old('descripcion') }}</textarea>
+                        <textarea id="descripcion" name="descripcion" class="w-full p-2 border rounded-lg">{{ old('descripcion', $gasto->descripcion) }}</textarea>
                     </div>
 
                     <div class="mb-4">
                         <label for="total" class="block font-semibold text-gray-700">Total (€)</label>
-                        <input type="number" step="0.01" id="total" name="total" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                               value="{{ old('total') }}" required>
+                        <input type="number" step="0.01" id="total" name="total" class="w-full p-2 border rounded-lg"
+                               value="{{ old('total', $gasto->total) }}" required>
                     </div>
 
                     <div class="mb-4">
                         <label for="fecha_registro" class="block font-semibold text-gray-700">Fecha</label>
-                        <input type="date" id="fecha_registro" name="fecha_registro" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                               value="{{ old('fecha_registro') }}" required>
+                        <input type="date" id="fecha_registro" name="fecha_registro"
+                            class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
+                            value="{{ old('fecha_registro', $gasto->fecha_registro ? \Carbon\Carbon::parse($gasto->fecha_registro)->format('Y-m-d') : '') }}"
+                            required>
                     </div>
-
+                    
                     <div class="flex justify-between">
-                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
-                            Guardar
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                            Actualizar
                         </button>
                         <a href="{{ route('gastos.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
                             Cancelar
                         </a>
                     </div>
+                   
                 </form>
 
             </div>
