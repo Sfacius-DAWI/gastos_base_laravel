@@ -39,10 +39,13 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="fecha_registro" class="block font-semibold text-gray-700">Fecha</label>
-                        <input type="date" id="fecha_registro" name="fecha_registro" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                               value="{{ old('fecha_registro') }}" required>
-                    </div>
+    <label for="fecha" class="block font-semibold text-gray-700">Fecha</label>
+    <input type="date" id="fecha" name="fecha"
+        class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
+        value="{{ old('fecha') }}" required>
+</div>
+                    
+                    
 
                     <div class="flex justify-between">
                         <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">

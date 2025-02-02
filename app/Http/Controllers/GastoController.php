@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Gasto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class GastoController extends Controller
 {
+    use AuthorizesRequests;
     // 1. Listar todos los gastos
     public function index()
-    {
-        $gastos = Gasto::all();
-        return view('gastos.index', compact('gastos'));
-    }
+{
+    $gastos = auth()->user()->gastos()->latest()->paginate(10);
+    return view('gastos.index', compact('gastos'));
+}
 
     // 2. Mostrar formulario de creación
     public function create()
@@ -24,42 +27,51 @@ class GastoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'titulo' => 'required|max:255',
-            'descripcion' => 'nullable|max:500',
-            'total' => 'required|numeric|min:0',
-            'fecha_registro' => 'required|date',
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'total' => 'required|numeric',
+            'fecha' => 'required|date',
         ]);
-
-        Gasto::create($request->all());
-
+    
+        auth()->user()->gastos()->create(
+            $request->only(['titulo', 'descripcion', 'total', 'fecha'])
+        );
+    
         return redirect()->route('gastos.index')->with('success', 'Gasto creado correctamente.');
     }
-
+    
     // 4. Mostrar formulario de edición
     public function edit(Gasto $gasto)
     {
         return view('gastos.edit', compact('gasto'));
     }
+    
 
     // 5. Actualizar un gasto en la BD
     public function update(Request $request, Gasto $gasto)
-    {
-        $request->validate([
-            'titulo' => 'required|max:255',
-            'descripcion' => 'nullable|max:500',
-            'total' => 'required|numeric|min:0',
-            'fecha_registro' => 'required|date',
-        ]);
+{
+    $this->authorize('update', $gasto); // Solo el dueño del gasto puede editarlo
 
-        $gasto->update($request->all());
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'total' => 'required|numeric',
+        'fecha' => 'required|date',
+    ]);
 
-        return redirect()->route('gastos.index')->with('success', 'Gasto actualizado correctamente.');
-    }
+    $gasto->update($request->all());
+
+    return redirect()->route('gastos.index')->with('success', 'Gasto actualizado correctamente.');
+}
+
 
     // 6. Eliminar un gasto
     public function destroy(Gasto $gasto)
-    {
-        $gasto->delete();
-        return redirect()->route('gastos.index')->with('success', 'Gasto eliminado.');
-    }
+{
+    $this->authorize('delete', $gasto); // Solo el dueño del gasto puede eliminarlo
+
+    $gasto->delete();
+
+    return redirect()->route('gastos.index')->with('success', 'Gasto eliminado correctamente.');
+}
 }
