@@ -1,67 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Proyecto de Gestión de Gastos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una aplicación web para gestionar productos/gastos, donde se pueden crear, editar y eliminar tickets. A continuación, se explica cómo iniciar y utilizar el proyecto.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Contenido
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Requisitos Previos](#requisitos-previos)
+- [Iniciación del Proyecto](#iniciación-del-proyecto)
+- [Uso de la Aplicación](#uso-de-la-aplicación)
+  - [Acceso y Autenticación](#acceso-y-autenticación)
+  - [Gestión de Gastos](#gestión-de-gastos)
+- [Validaciones y Reglas](#validaciones-y-reglas)
+- [Capturas de Pantalla](#capturas-de-pantalla)
+- [Notas Finales](#notas-finales)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Requisitos Previos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Docker](https://www.docker.com/) instalado en tu sistema.
+- [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) para compilar los assets.
+- Acceso a la terminal de comandos.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Iniciación del Proyecto
 
-## Laravel Sponsors
+Para levantar el entorno y migrar la base de datos, sigue estos pasos en orden:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Levantar contenedores con Sail:**  
+   Ejecuta el siguiente comando para iniciar los contenedores en modo desacoplado:
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
+   Nota: Este comando permite utilizar la consola de comandos del contenedor. Si lo prefieres, puedes abrir otra terminal para trabajar en paralelo.
 
-### Premium Partners
+2. **Ejecutar migraciones:**  
+   Una vez los contenedores estén corriendo, migra la base de datos:
+   ```bash
+   ./vendor/bin/sail artisan migrate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Compilar los assets:**  
+   Finalmente, ejecuta el siguiente comando para compilar los assets de la aplicación:
+   ```bash
+   npm run dev
+   ```
 
-## Contributing
+4. **Acceso a la aplicación:**  
+   Cuando ejecutes `npm run dev`, se te mostrarán varias URLs. Selecciona la que corresponde a localhost.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![alt text](image.png)
 
-## Code of Conduct
+![alt text](image-1.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Uso de la Aplicación
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Acceso y Autenticación
 
-## License
+Una vez que ingresas a la aplicación en tu navegador, notarás en la parte superior de la pantalla dos opciones: Login y Register. Para realizar pruebas, utiliza el siguiente usuario:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# gastos_base_laravel
+- **Usuario:** usuario_test@gmail.com
+- **Contraseña:** 12345678
+
+![alt text](image-2.png)
+
+### Gestión de Gastos
+
+#### Acceso a la sección de gastos:
+
+Dentro de la aplicación, haz clic en el botón o enlace Gastos para visualizar la tabla de tickets.
+
+![alt text](image-3.png)
+
+#### Crear un nuevo producto/ticket:
+
+Haz clic en el botón azul grande para agregar un nuevo ticket. Al crear un ticket, asegúrate de que los campos obligatorios se completen según las siguientes reglas:
+
+- Nombre
+- Descripción
+- Precio
+- Mes
+
+Además, la fecha asociada al ticket no puede estar en el futuro.
+
+![alt text](image-4.png)
+
+#### Editar o eliminar un ticket:
+
+Una vez creado el ticket, tendrás opciones para editar o eliminarlo, puede editartlo con el boton "naranja" que pone editar y eliminarlo con el boton rojo que poner "eliminar"
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+---
+
+## Validaciones y Reglas
+
+- **Campos Obligatorios:** Los campos de nombre, descripción, precio y mes deben ser completados obligatoriamente.
+- **Validación de Fecha:** La fecha no puede ser una fecha futura.
+- **Acciones Disponibles:** Cada ticket puede ser editado o eliminado según sea necesario.
+
+---
+
+## Notas Finales
+
+Recuerda que para realizar cambios en el código o en la base de datos, es posible que necesites reiniciar los contenedores o ejecutar comandos de migración adicionales. Asegúrate de tener todas las dependencias instaladas correctamente para evitar errores durante la ejecución.
+
+¡Gracias por revisar el proyecto!

@@ -41,12 +41,12 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="fecha_registro" class="block font-semibold text-gray-700">Fecha</label>
-                        <input type="date" id="fecha_registro" name="fecha_registro"
-                            class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                            value="{{ old('fecha_registro', $gasto->fecha_registro ? \Carbon\Carbon::parse($gasto->fecha_registro)->format('Y-m-d') : '') }}"
-                            required>
-                    </div>
+    <label for="fecha" class="block font-semibold text-gray-700">Fecha</label>
+    <input type="date" id="fecha" name="fecha"
+           class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
+           value="{{ old('fecha', $gasto->fecha ? \Carbon\Carbon::parse($gasto->fecha)->format('Y-m-d') : '') }}"
+           required>
+</div>
                     
                     <div class="flex justify-between">
                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
