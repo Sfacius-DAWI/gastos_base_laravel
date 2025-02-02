@@ -61,12 +61,28 @@ Para levantar el entorno y migrar la base de datos, sigue estos pasos en orden:
 
 ### Acceso y Autenticación
 
+#### Login
+
 Una vez que ingresas a la aplicación en tu navegador, notarás en la parte superior de la pantalla dos opciones: Login y Register. Para realizar pruebas, utiliza el siguiente usuario:
 
 - **Usuario:** usuario_test@gmail.com
 - **Contraseña:** 12345678
 
 ![alt text](image-2.png)
+
+##### register 
+
+el boton register ubicado el welcome te permite registrar a cualquier usuario añadiendo la siguiente información 
+
+- name 
+
+- email (tiene que cumplir le formato correo)
+
+- contraseña de mas de 8 letras 
+
+- confirmar contraseña 
+
+![alt text](image-7.png)
 
 ### Gestión de Gastos
 
@@ -98,6 +114,16 @@ Una vez creado el ticket, tendrás opciones para editar o eliminarlo, puede edit
 ![alt text](image-6.png)
 
 ---
+
+## Importante cada usuario tiene sus propios gastos 
+
+vamos a ver un ejemplo de a lo que me refiero cada usuario tiene sus propios gastos aqui ser ve a usuario de prueba reflejadn dos gastos 
+
+![alt text](image-8.png)
+
+mientras que el usuario santi tiene 3 
+
+![alt text](image-9.png)
 
 ## Validaciones y Reglas
 
